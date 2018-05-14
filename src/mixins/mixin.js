@@ -76,7 +76,7 @@ export default {
             this.beats = b;
         },
         changeTaal:function (b) {
-            console.log('test changing Taal',b);
+            //console.log('test changing Taal',b);
             this.selectedTaal = b;
         },
         isMark:function (i) {
@@ -86,6 +86,6 @@ export default {
     },
     mounted:function () {
         let st = this.selectedTaal;
-        console.log(Object.keys(st)[0]);
+        //console.log(Object.keys(st)[0]);
     }
 };

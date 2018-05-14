@@ -33,29 +33,37 @@
         border-left: 1px solid #eaeaea;
         position: relative; }
         #app .section-wrapper .composition-wrapper .composition-item .item-wrapper .c-part input {
-          border: none;
           box-shadow: none;
           border-radius: 0;
           text-align: center;
-          display: none;
+          opacity: 0;
+          z-index: -9;
           position: absolute;
           top: 0;
           left: 0;
           width: 100%;
-          height: 100%;
-          transition: all .3s ease; }
+          background: #fafafa;
+          border: 1px solid #f1f1f1;
+          height: 0; }
         #app .section-wrapper .composition-wrapper .composition-item .item-wrapper .c-part .notation {
           display: block;
           position: relative;
           top: inherit;
           z-index: 9;
           transition: all .3s ease; }
+          #app .section-wrapper .composition-wrapper .composition-item .item-wrapper .c-part .notation span {
+            display: inline-block;
+            margin: 0 2px 0 0;
+            text-transform: uppercase; }
+            #app .section-wrapper .composition-wrapper .composition-item .item-wrapper .c-part .notation span.komal {
+              border-bottom: 1px solid #000;
+              padding-bottom: 1px; }
         #app .section-wrapper .composition-wrapper .composition-item .item-wrapper .c-part.mark {
-          border-left: 1px solid indianred; }
+          border-left: 1px solid #266acd; }
         #app .section-wrapper .composition-wrapper .composition-item .item-wrapper .c-part:hover input {
+          opacity: 1;
+          z-index: 9;
           display: block;
-          background: #fafafa;
-          border: 1px solid #f1f1f1;
           height: 25px;
           line-height: 25px; }
         #app .section-wrapper .composition-wrapper .composition-item .item-wrapper .c-part:hover .notation {

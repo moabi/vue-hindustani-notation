@@ -40,17 +40,19 @@
             border-left:1px solid #eaeaea;
             position: relative;
             input{
-              border:none;
               box-shadow: none;
               border-radius: 0;
               text-align: center;
-              display: none;
+              opacity: 0;
+              z-index: -9;
               position: absolute;
               top: 0;
               left: 0;
               width: 100%;
-              height: 100%;
-              transition:all .3s ease;
+              background: #fafafa;
+              border:1px solid #f1f1f1;
+              height: 0;
+
             }
             .notation{
               display: block;
@@ -58,17 +60,27 @@
               top:inherit;
               z-index: 9;
               transition:all .3s ease;
+              span{
+                display: inline-block;
+                margin: 0 2px 0 0;
+                text-transform: uppercase;
+                &.komal{
+                  border-bottom: 1px solid #000;
+                  padding-bottom: 1px;
+                }
+              }
             }
             &.mark{
-              border-left:1px solid indianred;
+              border-left:1px solid #266acd;
             }
             &:hover{
               input{
+                opacity: 1;
+                z-index: 9;
                 display: block;
-                background: #fafafa;
-                border:1px solid #f1f1f1;
                 height: 25px;
                 line-height: 25px;
+
               }
               .notation{
                 position: absolute;

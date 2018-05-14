@@ -7,7 +7,7 @@
           <input type="text" class="input material-input" v-model="o.title">
         </div>
         <div class="field">
-          <button class="button is-danger is-small" @click="removeSection" title="Remove section">X</button>
+          <button class="button is-danger is-small" @click="removeSection(key)" title="Remove section">X</button>
         </div>
       </div>
 
@@ -28,10 +28,11 @@
               <input :title="index+1" v-model="c[b-1]"
                      class="input"
                      :id="'it'+b"
+                     maxlength="6"
                      type="text"
                      value="">
-              <div class="notation">
-                {{c[b-1] | tonotation}}
+              <div class="notation" v-html="toNotation(c[b-1])">
+
               </div>
             </div>
             <button class="button rm-line" @click="removeLine(key1)">X</button>
@@ -82,11 +83,7 @@
             }
         },
         filters: {
-            tonotation: function (value) {
-                if (!value) return '-'
-                value = value.toString()
-                return value.charAt(0).toUpperCase() + value.slice(1)
-            }
+
         },
         methods: {
             addLine: function (k) {
@@ -109,17 +106,10 @@
                 app.__vue__.$set(t, l, o);
 
             },
-            removeSection: function () {
+            removeSection: function (key) {
                 let $self = this,
-                    t = this.taan,
-                    l = Object.keys(t).length,
-                    o = {
-                        title: 'Your section title',
-                        composition: {
-                            0: []
-                        }
-                    };
-                app.__vue__.$set(t, l, o);
+                    t = this.taan;
+                app.__vue__.$delete(t,key);
 
             },
             /**
@@ -136,6 +126,23 @@
                 } else {
                     return true;
                 }*/
+            },
+            toNotation: function (value) {
+                //console.log(value);
+                if (!value) return '-';
+                value = value.toString();
+
+                let output = '';
+                for (let i = 0; i < value.length; i++) {
+                    let n = value.charAt(i).toString();
+                    console.log(n);
+                    if(typeof this.notes[n] !== 'undefined'){
+                        let k = this.notes[n];
+                        output += (typeof k.html !== 'undefined') ? k.html : '';
+                    }
+
+                }
+                return output;
             },
             removeLine: function (index) {
 
