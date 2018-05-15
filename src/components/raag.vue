@@ -2,17 +2,12 @@
   <div class="raag-list">
     <div class="columns">
       <div class="column is-3">
-        <div class="columns">
-          <div class="column">List of Raag : </div>
-          <div class="column">
-            <div class="select">
-              <select v-model="selected">
-                <option v-for="o in options" :value="o">
-                  {{ o.text }}
-                </option>
-              </select>
-            </div>
-          </div>
+        <div class="select">
+          <select v-model="selected">
+            <option v-for="o in options" :value="o">
+              {{ o.text }}
+            </option>
+          </select>
         </div>
       </div>
       <div class="column">
@@ -20,8 +15,8 @@
         <p>{{selected.desc}}</p>
         <div class="section">
           <ul>
-            <li>{{selected.aroha}}</li>
-            <li>{{selected.avroha}}</li>
+            <li>Aroha : {{selected.aroha}}</li>
+            <li>Avroha : {{selected.avroha}}</li>
           </ul>
         </div>
       </div>
@@ -52,7 +47,7 @@
                         '\n' +
                         'The best time for this raga is late night. The effect of the raga is soothing and intoxicating.',
                         aroha: 'S g M d n',
-                        avroha: ['S','N','D','P','M','G','R','S']
+                        avroha: 'S n d M g S'
                     }
                 }
 

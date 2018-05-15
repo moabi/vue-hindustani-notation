@@ -7,7 +7,8 @@
           <input type="text" class="input material-input" v-model="o.title">
         </div>
         <div class="field">
-          <button class="button is-danger is-small" @click="removeSection(key)" title="Remove section">X</button>
+          <button class="button is-small" @click="removeSection(key)" title="Remove section">
+            Remove section</button>
         </div>
       </div>
 
@@ -35,7 +36,7 @@
 
               </div>
             </div>
-            <button class="button rm-line" @click="removeLine(key1)">X</button>
+            <button class="button is-small rm-line" @click="removeLine(key,key1)">Remove Line</button>
           </div>
         </div>
 
@@ -144,8 +145,11 @@
                 }
                 return output;
             },
-            removeLine: function (index) {
+            removeLine: function (compositionIndex, lineIndex) {
+                let $self = this,
+                    t = $self.taan[compositionIndex].composition;
 
+                app.__vue__.$delete(t, lineIndex);
             }
         }
     }
