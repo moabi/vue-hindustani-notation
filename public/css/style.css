@@ -1,3 +1,4 @@
+@charset "UTF-8";
 #app [draggable] {
   -moz-user-select: none;
   -khtml-user-select: none;
@@ -99,5 +100,18 @@
   border-radius: 0;
   border-bottom: 1px solid #ccc;
   max-width: 380px; }
+
+/* Les animations d'entrée (« enter ») et de sortie (« leave »)  */
+/* peuvent utiliser différentes fonctions de durée et de temps.  */
+.slide-fade-enter-active {
+  transition: all .3s ease; }
+
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1); }
+
+.slide-fade-enter, .slide-fade-leave-to
+ {
+  transform: translateX(10px);
+  opacity: 0; }
 
 /*# sourceMappingURL=style.css.map */

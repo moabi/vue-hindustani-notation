@@ -1,10 +1,10 @@
 <template>
   <div class="taan-list">
-
+    <transition-group name="slide-fade" tag="div">
     <div v-for="(o,key) in taan" :key="'idtaan-'+ key" class="section-wrapper">
       <div class="field is-horizontal">
         <div class="field">
-          <input type="text" class="input material-input" v-model="o.title">
+          <input type="text" placeholder="Your section title" class="input material-input" v-model="o.title">
         </div>
         <div class="field">
           <button v-if="key > 0" class="button is-small" @click="removeSection(key)" title="Remove section">
@@ -13,6 +13,7 @@
       </div>
 
       <div class="composition-wrapper">
+        <transition-group name="slide-fade" tag="div">
         <div v-for="(c,key1) in o.composition"
              draggable="true"
              :key="'idcomposition'+key1"
@@ -41,6 +42,7 @@
             <button class="button is-small rm-line" @click="removeLine(key,key1)">Remove Line</button>
           </div>
         </div>
+        </transition-group>
 
         <p>
           <button class="button is-primary is-small" @click="addLine(key)">
@@ -50,6 +52,7 @@
       </div>
 
     </div>
+    </transition-group>
 
     <div class="is-grouped-multiline">
       <button class="button is-info is-small" @click="addSection">
@@ -74,7 +77,7 @@
                  */
                 taan: {
                     0: {
-                        title: 'Your section title',
+                        title: '',
                         composition: {
                             0: []
                         }
@@ -104,7 +107,7 @@
                     t = this.taan,
                     l = Object.keys(t).length,
                     o = {
-                        title: 'Your section title',
+                        title: '',
                         composition: {
                             0: []
                         }
