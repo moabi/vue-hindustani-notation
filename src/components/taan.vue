@@ -7,7 +7,7 @@
           <input type="text" class="input material-input" v-model="o.title">
         </div>
         <div class="field">
-          <button class="button is-small" @click="removeSection(key)" title="Remove section">
+          <button v-if="key > 0" class="button is-small" @click="removeSection(key)" title="Remove section">
             Remove section</button>
         </div>
       </div>
@@ -21,12 +21,14 @@
           <div class="item-wrapper">
             <div class="c-part"
                  v-for="(b,index) in selectedTaal.beat.t"
-                 :style="{width: 100/beats+'%'}"
+                 :style="{width: 100/selectedTaal.beat.t+'%'}"
                  :class="isMark(index)"
                  :key="'iditem'+index"
 
             >
-              <input :title="index+1" v-model="c[b-1]"
+              <input :title="index+1"
+                     v-model="c[b-1]"
+                     @keyup="keymonitor"
                      class="input"
                      :id="'it'+b"
                      maxlength="6"
@@ -61,6 +63,9 @@
 <script>
     export default {
         name: 'Taan',
+        props: {
+            selectedTaal : Object
+        },
         data: function () {
             return {
                 /**
@@ -107,6 +112,19 @@
                 app.__vue__.$set(t, l, o);
 
             },
+            keymonitor(event) {
+                // who caused it? "event.target.id"
+                //console.log('keyup from id: '+event.target.id)
+
+                // what was pressed?
+                let keyMessage = 'keyup: ';
+                if (event.shiftKey) {
+                    keyMessage += 'Shift+';
+                }
+                keyMessage += event.key || String.fromCharCode(event.keyCode);
+
+                console.log(keyMessage)
+            },
             removeSection: function (key) {
                 let $self = this,
                     t = this.taan;
@@ -118,15 +136,15 @@
              *
              * */
             isValidInput: function (evt) {
-                console.log(evt);
-                //evt = (evt) ? evt : window.event;
 
-                /*let charCode = (evt.which) ? evt.which : evt.keyCode;
-                if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+                let allowedLetters = ['S','r','R','g','G','M','P','d','D','n','N'];
+                if (allowedLetters.indexOf(evt)) {
+                    console.log('nope');
                     evt.preventDefault();
                 } else {
+                    console.log(evt);
                     return true;
-                }*/
+                }
             },
             toNotation: function (value) {
                 //console.log(value);

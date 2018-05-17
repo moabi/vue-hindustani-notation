@@ -1,7 +1,6 @@
 export default {
     data: function () {
       return {
-          beats:16,
           notes:{
               S:{
                   name: 'SA',
@@ -43,27 +42,6 @@ export default {
                   name: 'NI',
                   html: '<span>N</span>'
               }
-          },
-          selectedTaal:{
-              slug: 'teentaal',
-              text: 'Teentaal',
-              beat: {
-                  t : 16,
-                  d : [4,8,12]
-              },
-              bowls: [
-                  'Dha', 'Dhin', 'Dhin', 'Dha',
-                  'Dha', 'Dhin', 'Dhin', 'Dha',
-                  'Dha', 'Tin', 'Tin', 'Ta',
-                  'Ta', 'Dhin', 'Dhin', 'Dha'
-              ]
-          },
-          selectedRaag:{
-              slug: 'kafi',
-              text: 'Kafi',
-              desc:'Its minor third komal Ga puts Kafi amongst the melancholic ragas. It belongs to the thumri semi-classical genre. Very expressive melodies can be created using it. Resting on the Re or the Pa creates expection moods.',
-              aroha: 'S R g M P D n S',
-              avroha: 'S n D P M g R S'
           }
       }
     },
@@ -76,7 +54,7 @@ export default {
             this.beats = b;
         },
         changeTaal:function (b) {
-            //console.log('test changing Taal',b);
+            console.log('test changing Taal',b);
             this.selectedTaal = b;
         },
         isMark:function (i) {
@@ -85,7 +63,7 @@ export default {
         }
     },
     mounted:function () {
-        let st = this.selectedTaal;
+        //let st = this.selectedTaal;
         //console.log(Object.keys(st)[0]);
     }
 };

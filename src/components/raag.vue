@@ -3,7 +3,7 @@
     <div class="columns">
       <div class="column is-3">
         <div class="select">
-          <select v-model="selected">
+          <select v-model="selected" v-on:change="changR">
             <option v-for="o in options" :value="o">
               {{ o.text }}
             </option>
@@ -52,6 +52,12 @@
                 }
 
             };
+        },
+        methods:{
+            changR:function () {
+                let b = this.selected;
+                this.$emit('changraag',b);
+            }
         },
         mounted:function () {
             this.selected = this.options.kafi;

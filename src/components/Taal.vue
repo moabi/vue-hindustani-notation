@@ -8,7 +8,7 @@
         <div class="field is-horizontal">
           <div class="control">
             <div class="select">
-              <select name="taal" v-model="selected" class="select is-fullwidth">
+              <select name="taal" v-model="selected" v-on:change="changeT" class="select is-fullwidth">
                 <option v-for="o in taals" :value="o">
                   {{ o.text }}
                 </option>
@@ -38,7 +38,7 @@
     export default {
         name: 'Taal',
         props: {
-            title: String
+            selectedTaal : Object
         },
         data: function () {
             return {
@@ -76,17 +76,16 @@
         watch: {
             selected: function (val) {
                 this.changeBeat(val.beat.t);
-                this.changeT(val);
-                this.$emit("changeBeat", 12);
             }
         },
         mounted: function () {
             this.selected = this.taals.teentaal;
         },
         methods: {
-            changeT: function (b) {
+            changeT: function () {
                 //console.log('changeT');
-                this.$emit('changeTaal', b);
+                let b = this.selected;
+                this.$emit('changtaal',b);
             }
 
         }
