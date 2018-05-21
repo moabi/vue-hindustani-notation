@@ -44,6 +44,12 @@
           width: 100%;
           background: #fafafa;
           height: 25px; }
+          #app .section-wrapper .composition-wrapper .composition-item .item-wrapper .c-part input:focus {
+            opacity: 1;
+            z-index: 9;
+            display: block;
+            height: 25px;
+            line-height: 25px; }
         #app .section-wrapper .composition-wrapper .composition-item .item-wrapper .c-part .notation {
           display: block;
           position: relative;
@@ -53,19 +59,31 @@
           #app .section-wrapper .composition-wrapper .composition-item .item-wrapper .c-part .notation span {
             display: inline-block;
             margin: 0 2px 0 0;
-            text-transform: uppercase; }
+            text-transform: uppercase;
+            position: relative; }
             #app .section-wrapper .composition-wrapper .composition-item .item-wrapper .c-part .notation span.komal {
               border-bottom: 1px solid #000;
               padding-bottom: 1px; }
+            #app .section-wrapper .composition-wrapper .composition-item .item-wrapper .c-part .notation span.upper:before {
+              content: " ";
+              height: 4px;
+              width: 4px;
+              background: black;
+              border-radius: 50%;
+              position: absolute;
+              top: -2px;
+              left: 0;
+              right: 0;
+              margin: auto; }
         #app .section-wrapper .composition-wrapper .composition-item .item-wrapper .c-part.mark {
           border-left: 1px solid #266acd; }
-        #app .section-wrapper .composition-wrapper .composition-item .item-wrapper .c-part:hover input {
+        #app .section-wrapper .composition-wrapper .composition-item .item-wrapper .c-part:hover input, #app .section-wrapper .composition-wrapper .composition-item .item-wrapper .c-part.isfocused input {
           opacity: 1;
           z-index: 9;
           display: block;
           height: 25px;
           line-height: 25px; }
-        #app .section-wrapper .composition-wrapper .composition-item .item-wrapper .c-part:hover .notation {
+        #app .section-wrapper .composition-wrapper .composition-item .item-wrapper .c-part:hover .notation, #app .section-wrapper .composition-wrapper .composition-item .item-wrapper .c-part.isfocused .notation {
           position: absolute;
           top: 30px;
           width: 100%;
@@ -85,14 +103,14 @@
       #app .section-wrapper .composition-wrapper .composition-item .item-wrapper :hover .rm-line {
         display: block;
         left: -40px; }
-#app .taal-list .c-part {
+#app .taal-template .c-part {
   display: inline-block;
   float: left;
   margin: 1.5em 0;
   text-align: center; }
-  #app .taal-list .c-part.mark {
+  #app .taal-template .c-part.mark {
     border-left: 1px solid indianred; }
-  #app .taal-list .c-part.no-mark {
+  #app .taal-template .c-part.no-mark {
     border-left: 1px solid #eaeaea; }
 #app .material-input {
   border: none;

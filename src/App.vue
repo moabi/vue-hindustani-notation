@@ -3,8 +3,15 @@
     <headerNav/>
     <div class="container">
       <section class="section">
-        <raag v-on:changraag="changeSelectedRaag"/>
-        <Taal :selected-taal="selectedTaal" v-on:changtaal="changeSelectedTaal" />
+        <div class="columns">
+          <div class="column is-3">
+            <Taal :selected-taal="selectedTaal" v-on:changtaal="changeSelectedTaal" />
+          </div>
+          <div class="column is-3">
+            <raag v-on:changraag="changeSelectedRaag"/>
+          </div>
+        </div>
+        <TaalTemplate :selected-taal="selectedTaal" :selected-raag="selectedRaag" />
         <Taan :selected-taal="selectedTaal" />
       </section>
     </div>
@@ -15,6 +22,7 @@
 
     import headerNav from './components/headerNav.vue';
     import Taal from './components/Taal.vue';
+    import TaalTemplate from './components/TaalTemplate.vue';
     import Raag from './components/raag.vue';
     import Taan from './components/taan.vue';
 
@@ -57,6 +65,7 @@
         components: {
             headerNav,
             Taal,
+            TaalTemplate,
             Raag,
             Taan
         }

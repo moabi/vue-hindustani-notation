@@ -23,7 +23,7 @@
             <div class="c-part"
                  v-for="(b,index) in selectedTaal.beat.t"
                  :style="{width: 100/selectedTaal.beat.t+'%'}"
-                 :class="isMark(index)"
+                 :class="[isMark(index), hasFocusedInput(key1,index)]"
                  :key="'iditem'+index"
 
             >
@@ -32,6 +32,8 @@
                      @keyup="keymonitor"
                      class="input"
                      :id="'it'+b"
+                     @focus="isFocusedInput(key1,index)"
+                     @blur="focusInput = -1"
                      maxlength="6"
                      type="text"
                      value="">
@@ -43,7 +45,7 @@
           </div>
         </div>
         </transition-group>
-
+        <br>
         <p>
           <button class="button is-primary is-small" @click="addLine(key)">
             Add a line
@@ -71,19 +73,18 @@
         },
         data: function () {
             return {
+                event: null,
+                focusInput:-1,
                 /**
                  * Nested object
                  * containing the number of beats in a number of desired lines
                  */
-                taan: {
-                    0: {
+                taan: [
+                    {
                         title: '',
-                        composition: {
-                            0: []
-                        }
+                        composition:[{}]
                     }
-                },
-                event: null
+                ],
             };
         },
         computed: {
@@ -95,25 +96,36 @@
 
         },
         methods: {
+            /**
+             * Insert Line
+             *
+             * */
             addLine: function (k) {
                 let $self = this,
                     t = $self.taan[k].composition,
-                    l = Object.keys(t).length;
-                app.__vue__.$set(t, l, []);
+                    l = parseInt(t.length,10);
+                console.log($self.taan[k].composition);
+                app.__vue__.$set(t, l, {});
 
             },
             addSection: function () {
                 let $self = this,
                     t = this.taan,
-                    l = Object.keys(t).length,
+                    l = t.length,
                     o = {
                         title: '',
-                        composition: {
-                            0: []
-                        }
+                        composition: [{}]
                     };
                 app.__vue__.$set(t, l, o);
 
+            },
+            hasFocusedInput(k,n){
+                if(this.focusInput === k+n){
+                  return 'isfocused';
+                }
+            },
+            isFocusedInput(k,n){
+                this.focusInput = k+n;
             },
             keymonitor(event) {
                 // who caused it? "event.target.id"
@@ -157,8 +169,11 @@
                 let output = '';
                 for (let i = 0; i < value.length; i++) {
                     let n = value.charAt(i).toString();
-                    console.log(n);
-                    if(typeof this.notes[n] !== 'undefined'){
+                    if(n === '<'){
+
+                    } else if(n === '>'){
+
+                    } else if(typeof this.notes[n] !== 'undefined'){
                         let k = this.notes[n];
                         output += (typeof k.html !== 'undefined') ? k.html : '';
                     }

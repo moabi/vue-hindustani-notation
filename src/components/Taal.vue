@@ -1,36 +1,16 @@
 <template>
   <div class="taal-list">
-    <div class="columns">
-      <div class="column">
-        <h3 class="title">{{selected.text}}</h3>
-      </div>
-      <div class="column">
-        <div class="field is-horizontal">
+        <div class="field is-grouped">
           <div class="control">
             <div class="select">
-              <select name="taal" v-model="selected" v-on:change="changeT" class="select is-fullwidth">
+              <select name="taal" v-model="selected" class="select is-fullwidth" v-on:change="changeT">
                 <option v-for="o in taals" :value="o">
                   {{ o.text }}
                 </option>
               </select>
             </div>
           </div>
-          <div class="control">
-            <button type="submit" class="button is-danger">Change Taal</button>
-          </div>
-
         </div>
-      </div>
-    </div>
-    <div class="field is-horizontal">
-      <div class="has-text-centered composition-item c-part" v-for="o,k in selected.bowls"
-           :class="isMark(k)"
-           :style="{width: 100/selected.bowls.length+'%'}">
-        <div class="raag-do">
-          <span>{{o}}</span><span>{{k + 1}}</span>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -66,6 +46,16 @@
                         bowls: [
                             'Dha', 'Dhin', 'Dhin', 'Dha',
                             'Dha', 'Dhin', 'Dhin'
+                        ]
+                    },
+                    matta: {
+                        text: 'Matta',
+                        beat: {
+                            t: 9,
+                            d: [3,6,8]
+                        },
+                        bowls: [
+                            'Dhin','TiRaKiTa','Dhin' ,'Na','Tun','Na','Dhin','Dhin','Na'
                         ]
                     }
                 }
